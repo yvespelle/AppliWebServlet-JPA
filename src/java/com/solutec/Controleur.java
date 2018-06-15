@@ -64,38 +64,23 @@ public class Controleur extends HttpServlet {
 //            conn = DriverManager.getConnection(EmployesConstantes.URL, EmployesConstantes.USER, EmployesConstantes.MDP);
 //            stmt = conn.createStatement();
 //            rs = stmt.executeQuery(EmployesConstantes.requete);
-            UtilBean user1 = new UtilBean();
-
+//            UtilBean user1 = new UtilBean();
             String action;
 
-            Persistance p;
+//            Persistance p;
+//            String cleNom;
+//            String clePrenom;
+//            String cleAdresse;
+//            String cleEmail;
+//            String cleTeldom;
+//            String cleTelport;
+//            String cleTelpro;
+//            String cleCodepostal;
+//            String cleVille;
+            Employes employes;
 
-            String cleNom;
-            String clePrenom;
-            String cleAdresse;
-            String cleEmail;
-            String cleTeldom;
-            String cleTelport;
-            String cleTelpro;
-            String cleCodepostal;
-            String cleVille;
-
-//            String login = request.getParameter("login");
-//            String mdp = request.getParameter("mdp");
-
-
-            Utilisateur utilisateur = new Utilisateur();
-            Employes employes = new Employes();
-
-            
             String loginSaisie = request.getParameter("login");
             String mdpSaisie = request.getParameter("mdp");
-
-//            while (rs.next()) {
-//                user1.setLogin(rs.getString("login"));
-//                user1.setMdp(rs.getString("mdp"));
-//            }
-//
 
             if (loginSaisie != null && mdpSaisie != null) {
 
@@ -105,12 +90,10 @@ public class Controleur extends HttpServlet {
                 for (Utilisateur user : listeUtilisateurs) {
 
                     if (loginSaisie.equals(user.getLogin()) && mdpSaisie.equals(user.getPassword())) {
-                       
+
                         ArrayList<Employes> listeEmployes = new ArrayList<>();
                         listeEmployes.addAll(infoConn.getEmployes());
-//                    p = new Persistance();
-//                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-                    request.setAttribute("cleListe", listeEmployes);
+                        request.setAttribute("cleListe", listeEmployes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
 
                     } else if (loginSaisie.equals("") || mdpSaisie.equals("")) {
@@ -136,7 +119,7 @@ public class Controleur extends HttpServlet {
                 switch (btn) {
 
                     case (EmployesConstantes.ACTION_SUPPRIMER):
-                        p = new Persistance();
+//                       p = new Persistance();
 //                        p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
 //                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
 //                        request.setAttribute("cleListe", p.getEmployes(rs2));
@@ -155,50 +138,55 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_INSERER):
-                        p = new Persistance();
+//                        p = new Persistance();
                         //cleId = (String) session.getAttribute("cleEmpSession");
-                        cleNom = request.getParameter("nom");
-                        clePrenom = request.getParameter("prenom");
-                        cleTeldom = request.getParameter("teldom");
-                        cleTelport = request.getParameter("telport");
-                        cleTelpro = request.getParameter("telpro");
-                        cleAdresse = request.getParameter("adresse");
-                        cleCodepostal = request.getParameter("codepostal");
-                        cleVille = request.getParameter("ville");
-                        cleEmail = request.getParameter("email");
+//                        cleNom = request.getParameter("nom");
+//                        clePrenom = request.getParameter("prenom");
+//                        cleTeldom = request.getParameter("teldom");
+//                        cleTelport = request.getParameter("telport");
+//                        cleTelpro = request.getParameter("telpro");
+//                        cleAdresse = request.getParameter("adresse");
+//                        cleCodepostal = request.getParameter("codepostal");
+//                        cleVille = request.getParameter("ville");
+//                        cleEmail = request.getParameter("email");
 
-                        p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
-
+//                        p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
 //                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
 //                        request.setAttribute("cleListe", p.getEmployes(rs2));
 //                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_DETAILS):
-                        p = new Persistance();
-                        String cleEmp = request.getParameter("idClient");
-                        session.setAttribute("cleEmpSession", cleEmp);
+//                        p = new Persistance();
+//                        String cleEmp = request.getParameter("idClient");
+//                        session.setAttribute("cleEmpSession", cleEmp);
 //                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
 //                        request.setAttribute("cleEmp", p.getEmp(rs2));
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_VOIR_LISTE):
-                        p = new Persistance();
+//                        p = new Persistance();
 //                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
 //                        request.setAttribute("cleListe", p.getEmployes(rs2));
                         request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_MODIFIER):
-                        p = new Persistance();
-                        cleId = (String) session.getAttribute("cleEmpSession");
-                        cleNom = request.getParameter("nom");
-                        clePrenom = request.getParameter("prenom");
-                        cleAdresse = request.getParameter("adresse");
-                        cleEmail = request.getParameter("email");
-                        p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
+                        employes = new Employes();
+                        employes.setNom(request.getParameter("nom"));
+                        employes.setPrenom(request.getParameter("prenom"));
+                        employes.setAdresse(request.getParameter("adresse"));
+                        employes.setEmail(request.getParameter("email"));
+                        infoConn.modifierEmployes(employes);
 
+//                        p = new Persistance();
+//                       cleId = (String) session.getAttribute("cleEmpSession");
+//                        cleNom = request.getParameter("nom");
+//                        clePrenom = request.getParameter("prenom");
+                        //                       cleAdresse = request.getParameter("adresse");
+//                        cleEmail = request.getParameter("email");
+                        //                       p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
 //                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
 //                        request.setAttribute("cleEmp", p.getEmp(rs2));
 //                        request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);

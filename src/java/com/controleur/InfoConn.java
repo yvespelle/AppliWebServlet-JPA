@@ -18,6 +18,8 @@ import javax.persistence.Query;
  */
 @Stateless
 public class InfoConn {
+    
+    Employes employes;
 
     @PersistenceContext(unitName = "AppliWebServlet_JPAPU")
     private EntityManager em;
@@ -34,6 +36,11 @@ public class InfoConn {
 
     }
 
+    public void modifierEmployes(employes) {
+        employes = new Employes();
+        em.persist(employes);
+    }
+    
     public void persist(Object object) {
         em.persist(object);
     }

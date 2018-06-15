@@ -21,11 +21,14 @@ public class EmployesConstantes {
     public static final String USER2 = "test";
     public static final String MDP2 = "test";
 
-    public static final String REQ_SUPPRIMER = "DELETE from EMPLOYES where ID=?";
-    public static final String REQ_4 = "INSERT INTO EMPLOYES (NOM, PRENOM, ADRESSE) VALUES '?','?','?','?'";
-    public static final String REQ_SELECT_EMPLOYE = "SELECT * from EMPLOYES where ID=?";
-    public static final String REQ_MODIF_EMPLOYE = "UPDATE EMPLOYES SET NOM=?, PRENOM=?, ADRESSE=?, EMAIL=? where ID =?";
-    public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM, TELPORT, TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
+    public static final String REQ_SUPPRIMER = "DELETE e from Employes where e.id=:idEmp";
+    public static final String REQ_SELECT_EMPLOYE = "SELECT e from Employes where e.id=:idEmp";
+        
+//    public static final String REQ_SUPPRIMER = "DELETE from EMPLOYES where ID=?";
+//    public static final String REQ_4 = "INSERT INTO EMPLOYES (NOM, PRENOM, ADRESSE) VALUES '?','?','?','?'";
+//    public static final String REQ_SELECT_EMPLOYE = "SELECT * from EMPLOYES where ID=?";
+//    public static final String REQ_MODIF_EMPLOYE = "UPDATE EMPLOYES SET NOM=?, PRENOM=?, ADRESSE=?, EMAIL=? where ID =?";
+//    public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM, TELPORT, TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
 
     public static final String ACTION = "action";
     public static final String ACTION_SUPPRIMER = "Supprimer";
