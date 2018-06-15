@@ -28,7 +28,6 @@ public class InfoConn {
     }
 
         
-
     public Collection getEmployes() {
         Query q = em.createQuery(EmployesConstantes.REQ_SELECT_TOUS);
         return q.getResultList();

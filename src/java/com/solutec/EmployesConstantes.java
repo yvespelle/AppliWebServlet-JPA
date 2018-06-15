@@ -16,7 +16,7 @@ public class EmployesConstantes {
 //    public static final String MDP = "jee";
     public static final String GET_UTILISATEUR = "SELECT u FROM Utilisateur u";
 
-    public static final String REQ_SELECT_TOUS = "SELECT u from EMPLOYES u";
+    public static final String REQ_SELECT_TOUS = "SELECT e from Employes e";
     public static final String URL2 = "jdbc:derby://localhost:1527/solutec";
     public static final String USER2 = "test";
     public static final String MDP2 = "test";

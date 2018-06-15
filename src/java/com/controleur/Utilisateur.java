@@ -92,7 +92,7 @@ public class Utilisateur implements Serializable {
 
     @Override
     public String toString() {
-        return "com.controleur.Utilisateur[ id=" + id + " ]";
+        return "";
     }
     
 }

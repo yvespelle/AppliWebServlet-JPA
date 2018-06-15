@@ -82,9 +82,11 @@ public class Controleur extends HttpServlet {
 
 //            String login = request.getParameter("login");
 //            String mdp = request.getParameter("mdp");
-            
+
+
             Utilisateur utilisateur = new Utilisateur();
             Employes employes = new Employes();
+
             
             String loginSaisie = request.getParameter("login");
             String mdpSaisie = request.getParameter("mdp");
@@ -94,30 +96,32 @@ public class Controleur extends HttpServlet {
 //                user1.setMdp(rs.getString("mdp"));
 //            }
 //
-            
-            
-            System.out.println("");
 
             if (loginSaisie != null && mdpSaisie != null) {
 
-                if (loginSaisie.equals(utilisateur.getLogin()) && mdpSaisie.equals(utilisateur.getPassword())) {
+                ArrayList<Utilisateur> listeUtilisateurs = new ArrayList<>();
+                listeUtilisateurs.addAll(infoConn.getUtilisateur());
 
-                    ArrayList<Employes> listeEmployes = new ArrayList<>();
-                    listeEmployes.addAll(infoConn.getEmployes());
+                for (Utilisateur user : listeUtilisateurs) {
 
+                    if (loginSaisie.equals(user.getLogin()) && mdpSaisie.equals(user.getPassword())) {
+                       
+                        ArrayList<Employes> listeEmployes = new ArrayList<>();
+                        listeEmployes.addAll(infoConn.getEmployes());
 //                    p = new Persistance();
 //                    rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-//                    request.setAttribute("cleListe", p.getEmployes(rs2));
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                    request.setAttribute("cleListe", listeEmployes);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
 
-                } else if (loginSaisie.equals("") || mdpSaisie.equals("")) {
-                    request.setAttribute("cleMessageErreur", EmployesConstantes.ERREUR_SAISIE_VIDE);
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
+                    } else if (loginSaisie.equals("") || mdpSaisie.equals("")) {
+                        request.setAttribute("cleMessageErreur", EmployesConstantes.ERREUR_SAISIE_VIDE);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
 
-                } else {
-                    request.setAttribute("cleMessageErreur", EmployesConstantes.ERREUR_INFOS_CONN_KO);
-                    request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
+                    } else {
+                        request.setAttribute("cleMessageErreur", EmployesConstantes.ERREUR_INFOS_CONN_KO);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
 
+                    }
                 }
             }
 
