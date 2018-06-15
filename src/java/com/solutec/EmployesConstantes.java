@@ -11,18 +11,13 @@ package com.solutec;
  */
 public class EmployesConstantes {
 
-//    public static final String URL = "jdbc:derby://localhost:1527/BaseTP";
-//    public static final String USER = "jee";
-//    public static final String MDP = "jee";
     public static final String GET_UTILISATEUR = "SELECT u FROM Utilisateur u";
 
     public static final String REQ_SELECT_TOUS = "SELECT e from Employes e";
-    public static final String URL2 = "jdbc:derby://localhost:1527/solutec";
-    public static final String USER2 = "test";
-    public static final String MDP2 = "test";
+  
 
-    public static final String REQ_SUPPRIMER = "DELETE e from Employes where e.id=:idEmp";
-    public static final String REQ_SELECT_EMPLOYE = "SELECT e from Employes where e.id=:idEmp";
+    public static final String REQ_SUPPRIMER = "DELETE e from Employes where e.id=:idClient";
+    public static final String REQ_SELECT_EMPLOYE = "SELECT e FROM Employes e WHERE e.id=:idClient";
         
 //    public static final String REQ_SUPPRIMER = "DELETE from EMPLOYES where ID=?";
 //    public static final String REQ_4 = "INSERT INTO EMPLOYES (NOM, PRENOM, ADRESSE) VALUES '?','?','?','?'";

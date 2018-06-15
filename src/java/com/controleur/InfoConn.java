@@ -18,7 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class InfoConn {
-    
+
     Employes employes;
 
     @PersistenceContext(unitName = "AppliWebServlet_JPAPU")
@@ -29,18 +29,25 @@ public class InfoConn {
         return q.getResultList();
     }
 
-        
     public Collection getEmployes() {
         Query q = em.createQuery(EmployesConstantes.REQ_SELECT_TOUS);
         return q.getResultList();
 
     }
 
-    public void modifierEmployes(employes) {
+    public void modifierEmployes() {
         employes = new Employes();
         em.persist(employes);
     }
-    
+
+    public Employes getDetails(String idEmp) {
+        Integer idEmpInteger = Integer.valueOf(idEmp); // Conversion de String en Integer
+        Query q = em.createQuery(EmployesConstantes.REQ_SELECT_EMPLOYE);
+        //on doit faire un set du parametre sur l'objet query
+        q.setParameter("idClient", idEmpInteger);
+        return (Employes) q.getSingleResult();
+    }
+
     public void persist(Object object) {
         em.persist(object);
     }

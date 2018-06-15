@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -109,7 +110,7 @@ public class Controleur extends HttpServlet {
             }
 
             String btn = request.getParameter("bouton");
-            String cleId = request.getParameter("idClient");
+            //String cleId = request.getParameter("idClient");
 
             if (btn == null) {
                 request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
@@ -157,18 +158,21 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_DETAILS):
+                        employes = new Employes();
+
 //                        p = new Persistance();
-//                        String cleEmp = request.getParameter("idClient");
-//                        session.setAttribute("cleEmpSession", cleEmp);
+                        String cleEmp = request.getParameter("idClient");
+                        session.setAttribute("cleEmpSession", cleEmp);
 //                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
-//                        request.setAttribute("cleEmp", p.getEmp(rs2));
+                         employes = infoConn.getDetails(cleEmp);
+                        request.setAttribute("cleEmp", employes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_VOIR_LISTE):
-//                        p = new Persistance();
-//                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-//                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                        ArrayList<Employes> listeEmployes = new ArrayList<>();
+                        listeEmployes.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmployes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
@@ -178,20 +182,23 @@ public class Controleur extends HttpServlet {
                         employes.setPrenom(request.getParameter("prenom"));
                         employes.setAdresse(request.getParameter("adresse"));
                         employes.setEmail(request.getParameter("email"));
-                        infoConn.modifierEmployes(employes);
+                        infoConn.modifierEmployes();
+
+                        ArrayList<Employes> listeEmp = new ArrayList<>();
+                        listeEmp.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmp);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
+                        break;
 
 //                        p = new Persistance();
 //                       cleId = (String) session.getAttribute("cleEmpSession");
 //                        cleNom = request.getParameter("nom");
 //                        clePrenom = request.getParameter("prenom");
-                        //                       cleAdresse = request.getParameter("adresse");
+                    //                       cleAdresse = request.getParameter("adresse");
 //                        cleEmail = request.getParameter("email");
-                        //                       p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
+                    //                       p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
 //                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
 //                        request.setAttribute("cleEmp", p.getEmp(rs2));
-//                        request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
-                        break;
-
                     case (EmployesConstantes.ACTION_QUITTER):
                         response.sendRedirect(EmployesConstantes.PAGE_INDEX);
                         break;
