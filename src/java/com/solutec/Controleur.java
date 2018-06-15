@@ -54,30 +54,8 @@ public class Controleur extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession();
-
-//            Connection conn;
-//            Statement stmt;
-//            ResultSet rs;
-//
-//            Connection conn2;
-//            Statement stmt2;
-//            ResultSet rs2;
-//            conn = DriverManager.getConnection(EmployesConstantes.URL, EmployesConstantes.USER, EmployesConstantes.MDP);
-//            stmt = conn.createStatement();
-//            rs = stmt.executeQuery(EmployesConstantes.requete);
-//            UtilBean user1 = new UtilBean();
             String action;
-
-//            Persistance p;
-//            String cleNom;
-//            String clePrenom;
-//            String cleAdresse;
-//            String cleEmail;
-//            String cleTeldom;
-//            String cleTelport;
-//            String cleTelpro;
-//            String cleCodepostal;
-//            String cleVille;
+            String cleEmp;
             Employes employes;
 
             String loginSaisie = request.getParameter("login");
@@ -161,10 +139,10 @@ public class Controleur extends HttpServlet {
                         employes = new Employes();
 
 //                        p = new Persistance();
-                        String cleEmp = request.getParameter("idClient");
+                        cleEmp = request.getParameter("idClient");
                         session.setAttribute("cleEmpSession", cleEmp);
 //                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
-                         employes = infoConn.getDetails(cleEmp);
+                        employes = infoConn.getDetails(cleEmp);
                         request.setAttribute("cleEmp", employes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
                         break;
@@ -178,15 +156,25 @@ public class Controleur extends HttpServlet {
 
                     case (EmployesConstantes.ACTION_MODIFIER):
                         employes = new Employes();
+                        //Integer idEmpInteger = Integer.valueOf(idEmp);
+
+                        cleEmp = (String) session.getAttribute("cleEmpSession");
+                        //session.setAttribute("cleEmpSession", cleEmp);
                         employes.setNom(request.getParameter("nom"));
                         employes.setPrenom(request.getParameter("prenom"));
                         employes.setAdresse(request.getParameter("adresse"));
                         employes.setEmail(request.getParameter("email"));
-                        infoConn.modifierEmployes();
+                        employes.setTeldom(request.getParameter("teldom"));
+                        employes.setTelpro(request.getParameter("telpro"));
+                        employes.setCodepostal(request.getParameter("codepostal"));
+                        employes.setTelport(request.getParameter("telport"));
+                        employes.setVille(request.getParameter("ville"));
 
-                        ArrayList<Employes> listeEmp = new ArrayList<>();
-                        listeEmp.addAll(infoConn.getEmployes());
-                        request.setAttribute("cleListe", listeEmp);
+                        Integer cleEmpInteger = Integer.valueOf(cleEmp);
+                        infoConn.modifierEmployes(employes, cleEmpInteger);
+
+                        employes = infoConn.getDetails(cleEmp);
+                        request.setAttribute("cleEmp", employes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
                         break;
 

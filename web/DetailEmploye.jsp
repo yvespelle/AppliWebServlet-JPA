@@ -53,6 +53,13 @@
                                 <input type="text" name="telpro" value="${cleEmp.telpro}" class="form-control">
                             </div>
                         </div>
+                            
+                                                    <div class="form-group">
+                            <label class="col-sm-2 control-label" for="textinput">Tél port</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="telport" value="${cleEmp.telport}" class="form-control">
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="textinput">Adresse</label>

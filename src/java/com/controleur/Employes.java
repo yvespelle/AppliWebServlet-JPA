@@ -28,43 +28,16 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Employes.findAll", query = "SELECT e FROM Employes e")})
 public class Employes implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "NOM")
     private String nom;
-    @Basic(optional = false)
-    @NotNull()
-    @Size(min = 1, max = 25)
-    @Column(name = "PRENOM")
     private String prenom;
-    @Size(max = 10)
-    @Column(name = "TELDOM")
     private String teldom;
-    @Size(max = 10)
-    @Column(name = "TELPORT")
     private String telport;
-    @Size(max = 10)
-    @Column(name = "TELPRO")
     private String telpro;
-    @Basic(optional = false)
-    @NotNull()
-    @Size(min = 1, max = 150)
-    @Column(name = "ADRESSE")
     private String adresse;
-    @Size(max = 5)
-    @Column(name = "CODEPOSTAL")
     private String codepostal;
-    @Size(max = 25)
-    @Column(name = "VILLE")
     private String ville;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull()
-    @Size(min = 1, max = 25)
-    @Column(name = "EMAIL")
     private String email;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,12 +67,14 @@ public class Employes implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -112,6 +87,7 @@ public class Employes implements Serializable {
         }
         return true;
     }
+
     @Override
     public String toString() {
         return "com.controleur.Employes[ id=" + id + " ]";
@@ -188,5 +164,5 @@ public class Employes implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }

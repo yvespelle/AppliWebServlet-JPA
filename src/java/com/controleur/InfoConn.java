@@ -35,8 +35,17 @@ public class InfoConn {
 
     }
 
-    public void modifierEmployes() {
-        employes = new Employes();
+    public void modifierEmployes(Employes emp, int idEmp) {
+        Employes employes = (Employes) em.find(Employes.class, idEmp);
+        employes.setNom(emp.getNom());
+        employes.setPrenom(emp.getPrenom());
+        employes.setAdresse(emp.getAdresse());
+        employes.setEmail(emp.getEmail());
+        employes.setCodepostal(emp.getCodepostal());
+        employes.setVille(emp.getVille());
+        employes.setTeldom(emp.getTeldom());
+        employes.setTelport(emp.getTelport());
+        employes.setTelpro(emp.getTelpro());
         em.persist(employes);
     }
 
