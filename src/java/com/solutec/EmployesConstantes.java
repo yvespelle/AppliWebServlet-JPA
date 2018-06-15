@@ -16,7 +16,7 @@ public class EmployesConstantes {
     public static final String REQ_SELECT_TOUS = "SELECT e from Employes e";
   
 
-    public static final String REQ_SUPPRIMER = "DELETE e from Employes e WHERE e.id = :idClient";
+    public static final String REQ_SUPPRIMER = "DELETE from Employes e WHERE e.id = :idClient";
     public static final String REQ_SELECT_EMPLOYE = "SELECT e FROM Employes e WHERE e.id = :idClient";
     public static final String REQ_MODIF_EMPLOYE = "UPDATE Employes e SET e.nom = :nomEmp, e.prenom = :prenomEmp, e.adresse = :adresseEmp, e.email = :emailEmp WHERE e.id = :idClient";
     

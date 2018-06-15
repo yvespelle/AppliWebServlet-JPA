@@ -56,6 +56,17 @@ public class InfoConn {
         q.setParameter("idClient", idEmpInteger);
         return (Employes) q.getSingleResult();
     }
+    
+    
+public void supprimerEmploye(String idEmp) {
+//      employes = new Employes();
+        Integer idEmpInteger = Integer.valueOf(idEmp);
+
+        Query q = em.createQuery(EmployesConstantes.REQ_SUPPRIMER);
+        q.setParameter("idClient", idEmpInteger);
+        // em.persist(employes);
+        q.executeUpdate();
+}
 
     public void persist(Object object) {
         em.persist(object);

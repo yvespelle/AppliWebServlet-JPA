@@ -98,10 +98,13 @@ public class Controleur extends HttpServlet {
                 switch (btn) {
 
                     case (EmployesConstantes.ACTION_SUPPRIMER):
-//                       p = new Persistance();
-//                        p.supprimer(EmployesConstantes.REQ_SUPPRIMER, cleId);
-//                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-//                        request.setAttribute("cleListe", p.getEmployes(rs2));
+                      cleEmp = request.getParameter("idClient");
+                        infoConn.supprimerEmploye(cleEmp);
+
+                        ArrayList<Employes> listeEmployes = new ArrayList<>();
+                        listeEmployes.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmployes);
+
                         request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
@@ -110,10 +113,10 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_ANNULER):
-//                        p = new Persistance();
-//                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-//                        request.setAttribute("cleListe", p.getEmployes(rs2));
-//                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+                        ArrayList<Employes> listeEmployes3 = new ArrayList<>();
+                        listeEmployes3.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmployes3);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_INSERER):
@@ -148,9 +151,9 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_VOIR_LISTE):
-                        ArrayList<Employes> listeEmployes = new ArrayList<>();
-                        listeEmployes.addAll(infoConn.getEmployes());
-                        request.setAttribute("cleListe", listeEmployes);
+                        ArrayList<Employes> listeEmployes2 = new ArrayList<>();
+                        listeEmployes2.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmployes2);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
                         break;
 
