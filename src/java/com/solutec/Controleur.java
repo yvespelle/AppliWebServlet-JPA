@@ -94,11 +94,10 @@ public class Controleur extends HttpServlet {
                 request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
             }
             if (btn != null) {
-
                 switch (btn) {
 
                     case (EmployesConstantes.ACTION_SUPPRIMER):
-                      cleEmp = request.getParameter("idClient");
+                        cleEmp = request.getParameter("idClient");
                         infoConn.supprimerEmploye(cleEmp);
 
                         ArrayList<Employes> listeEmployes = new ArrayList<>();
@@ -120,8 +119,30 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_INSERER):
+                        employes = new Employes();
+
+                        //cleEmp = (String) session.getAttribute("cleEmpSession");
+                        employes.setNom(request.getParameter("nom"));
+                        employes.setPrenom(request.getParameter("prenom"));
+                        employes.setTeldom(request.getParameter("teldom"));
+//                        employes.setTelport(request.getParameter("telport"));
+                        employes.setTelpro(request.getParameter("telpro"));
+                        employes.setAdresse(request.getParameter("adresse"));
+                        employes.setCodepostal(request.getParameter("codepostal"));
+                        employes.setVille(request.getParameter("ville"));
+                        employes.setEmail(request.getParameter("email"));
+
+                        //Integer cleEmpInteger2 = Integer.valueOf(cleEmp);
+                        infoConn.ajouterEmployes();
+                        ArrayList<Employes> listeEmployes4 = new ArrayList<>();
+                        listeEmployes4.addAll(infoConn.getEmployes());
+                        request.setAttribute("cleListe", listeEmployes4);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
+
+                        break;
+
 //                        p = new Persistance();
-                        //cleId = (String) session.getAttribute("cleEmpSession");
+                    //cleId = (String) session.getAttribute("cleEmpSession");
 //                        cleNom = request.getParameter("nom");
 //                        clePrenom = request.getParameter("prenom");
 //                        cleTeldom = request.getParameter("teldom");
@@ -131,20 +152,16 @@ public class Controleur extends HttpServlet {
 //                        cleCodepostal = request.getParameter("codepostal");
 //                        cleVille = request.getParameter("ville");
 //                        cleEmail = request.getParameter("email");
-
 //                        p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
 //                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
 //                        request.setAttribute("cleListe", p.getEmployes(rs2));
 //                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-                        break;
-
+//                        break;
                     case (EmployesConstantes.ACTION_DETAILS):
                         employes = new Employes();
 
-//                        p = new Persistance();
                         cleEmp = request.getParameter("idClient");
                         session.setAttribute("cleEmpSession", cleEmp);
-//                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleEmp);
                         employes = infoConn.getDetails(cleEmp);
                         request.setAttribute("cleEmp", employes);
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
@@ -159,10 +176,8 @@ public class Controleur extends HttpServlet {
 
                     case (EmployesConstantes.ACTION_MODIFIER):
                         employes = new Employes();
-                        //Integer idEmpInteger = Integer.valueOf(idEmp);
 
                         cleEmp = (String) session.getAttribute("cleEmpSession");
-                        //session.setAttribute("cleEmpSession", cleEmp);
                         employes.setNom(request.getParameter("nom"));
                         employes.setPrenom(request.getParameter("prenom"));
                         employes.setAdresse(request.getParameter("adresse"));

@@ -14,18 +14,12 @@ public class EmployesConstantes {
     public static final String GET_UTILISATEUR = "SELECT u FROM Utilisateur u";
 
     public static final String REQ_SELECT_TOUS = "SELECT e from Employes e";
-  
 
     public static final String REQ_SUPPRIMER = "DELETE from Employes e WHERE e.id = :idClient";
     public static final String REQ_SELECT_EMPLOYE = "SELECT e FROM Employes e WHERE e.id = :idClient";
     public static final String REQ_MODIF_EMPLOYE = "UPDATE Employes e SET e.nom = :nomEmp, e.prenom = :prenomEmp, e.adresse = :adresseEmp, e.email = :emailEmp WHERE e.id = :idClient";
-    
-        
-//    public static final String REQ_SUPPRIMER = "DELETE from EMPLOYES where ID=?";
-//    public static final String REQ_4 = "INSERT INTO EMPLOYES (NOM, PRENOM, ADRESSE) VALUES '?','?','?','?'";
-//    public static final String REQ_SELECT_EMPLOYE = "SELECT * from EMPLOYES where ID=?";
-//    public static final String REQ_MODIF_EMPLOYE = "UPDATE EMPLOYES SET NOM=?, PRENOM=?, ADRESSE=?, EMAIL=? where ID =?";
-//    public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM, TELPORT, TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
+
+    public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM,  TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?)";
 
     public static final String ACTION = "action";
     public static final String ACTION_SUPPRIMER = "Supprimer";
@@ -36,14 +30,14 @@ public class EmployesConstantes {
     public static final String ACTION_QUITTER = "Quitter";
     public static final String ACTION_AJOUTER = "Ajouter";
     public static final String ACTION_ANNULER = "Annuler";
-    public static final String ACTION_INSERER= "Inserer";
+    public static final String ACTION_INSERER = "Inserer";
 
     public static final String PAGE_INDEX = "accueil.jsp";
     public static final String PAGE_CONTROLEUR = "Controleur";
     public static final String PAGE_TABLEAU = "tableau.jsp";
     public static final String PAGE_DETAIL_EMPLOYE = "DetailEmploye.jsp";
-    
-     //Messages d'erreur
+
+    //Messages d'erreur
     public static final String ERREUR_SAISIE_VIDE = "Vous devez renseigner les deux champs";
     public static final String ERREUR_INFOS_CONN_KO = "Echec de la connexion! Verifiez votre login et/ou mot de passe et essayez à nouveau.";
     public static final String ERREUR_SUPPR = "Echec lors de la suppression! Vous avez bien sélectionné un membre?";

@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+
 /**
  *
  * @author esic
@@ -56,18 +57,30 @@ public class InfoConn {
         q.setParameter("idClient", idEmpInteger);
         return (Employes) q.getSingleResult();
     }
-    
-    
-public void supprimerEmploye(String idEmp) {
-//      employes = new Employes();
-        Integer idEmpInteger = Integer.valueOf(idEmp);
 
+    public void supprimerEmploye(String idEmp) {
+        Integer idEmpInteger = Integer.valueOf(idEmp);
         Query q = em.createQuery(EmployesConstantes.REQ_SUPPRIMER);
         q.setParameter("idClient", idEmpInteger);
-        // em.persist(employes);
         q.executeUpdate();
-}
+    }
 
+    public void ajouterEmployes() {
+        Query q = em.createNativeQuery(EmployesConstantes.REQ_ADD_EMPLOYE);
+//        employes.setNom(emp.getNom());
+//        employes.setPrenom(emp.getPrenom());
+//        employes.setAdresse(emp.getAdresse());
+//        employes.setEmail(emp.getEmail());
+//        employes.setCodepostal(emp.getCodepostal());
+//        employes.setVille(emp.getVille());
+//        employes.setTeldom(emp.getTeldom());
+//        employes.setTelport(emp.getTelport());
+//        employes.setTelpro(emp.getTelpro());
+        q.executeUpdate();
+
+    }
+
+//    }
     public void persist(Object object) {
         em.persist(object);
     }
