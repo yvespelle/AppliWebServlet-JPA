@@ -108,7 +108,7 @@ public class Controleur extends HttpServlet {
                         break;
 
                     case (EmployesConstantes.ACTION_AJOUTER):
-                        request.getRequestDispatcher("test.jsp").forward(request, response);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_AJOUTER).forward(request, response);
                         break;
 
                     case (EmployesConstantes.ACTION_ANNULER):
@@ -133,7 +133,7 @@ public class Controleur extends HttpServlet {
                         employes.setEmail(request.getParameter("email"));
 
                         //Integer cleEmpInteger2 = Integer.valueOf(cleEmp);
-                        infoConn.ajouterEmployes();
+                        infoConn.ajouterEmployes(employes);
                         ArrayList<Employes> listeEmployes4 = new ArrayList<>();
                         listeEmployes4.addAll(infoConn.getEmployes());
                         request.setAttribute("cleListe", listeEmployes4);

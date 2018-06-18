@@ -32,10 +32,11 @@ public class EmployesConstantes {
     public static final String ACTION_ANNULER = "Annuler";
     public static final String ACTION_INSERER = "Inserer";
 
-    public static final String PAGE_INDEX = "accueil.jsp";
+    public static final String PAGE_INDEX = "/WEB-INF/vue/accueil.jsp";
     public static final String PAGE_CONTROLEUR = "Controleur";
-    public static final String PAGE_TABLEAU = "tableau.jsp";
-    public static final String PAGE_DETAIL_EMPLOYE = "DetailEmploye.jsp";
+    public static final String PAGE_TABLEAU = "/WEB-INF/vue/tableau.jsp";
+    public static final String PAGE_DETAIL_EMPLOYE = "/WEB-INF/vue/DetailEmploye.jsp";
+    public static final String PAGE_AJOUTER="/WEB-INF/vue/ajouter.jsp";
 
     //Messages d'erreur
     public static final String ERREUR_SAISIE_VIDE = "Vous devez renseigner les deux champs";
