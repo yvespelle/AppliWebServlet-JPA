@@ -61,7 +61,7 @@
                             </c:forEach>
                         </table>
 
-                        <input type='submit' name="bouton" value="Quitter" onclick="twFermer()" />
+                        <input type='submit' name="bouton" value="Quitter"/>
                         <input type='submit' name="bouton" value="Supprimer"/>                                     
                         <input type='submit' name="bouton" value="Details"/>
                         <input type='submit' name="bouton" value="Ajouter"/>

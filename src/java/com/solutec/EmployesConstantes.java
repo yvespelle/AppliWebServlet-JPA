@@ -20,6 +20,8 @@ public class EmployesConstantes {
     public static final String REQ_MODIF_EMPLOYE = "UPDATE Employes e SET e.nom = :nomEmp, e.prenom = :prenomEmp, e.adresse = :adresseEmp, e.email = :emailEmp WHERE e.id = :idClient";
 
     public static final String REQ_ADD_EMPLOYE = "INSERT INTO EMPLOYES(NOM, PRENOM, TELDOM,  TELPRO, ADRESSE, CODEPOSTAL, VILLE, EMAIL) VALUES (?,?,?,?,?,?,?,?)";
+    
+    public static final String REQ_ADD_UTILISATEUR = "INSERT INTO UTILISATEUR(LOGIN, PASSWORD) VALUES (?,?)";
 
     public static final String ACTION = "action";
     public static final String ACTION_SUPPRIMER = "Supprimer";

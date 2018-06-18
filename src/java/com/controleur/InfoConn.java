@@ -29,6 +29,16 @@ public class InfoConn {
         return q.getResultList();
     }
     
+    public void ajouterUtilisateur(Utilisateur utilisateur){
+        Utilisateur user = new Utilisateur();
+        user.setLogin(utilisateur.getLogin());
+        user.setPassword(utilisateur.getPassword());
+        Query q = em.createNativeQuery(EmployesConstantes.REQ_ADD_UTILISATEUR);
+//        this.persist(utilisateur);
+        q.executeUpdate();
+
+    }
+    
     public Collection getEmployes() {
         Query q = em.createQuery(EmployesConstantes.REQ_SELECT_TOUS);
         return q.getResultList();
@@ -76,7 +86,6 @@ public class InfoConn {
         employes.setTelport(emp.getTelport());
         employes.setTelpro(emp.getTelpro());
         Query q = em.createNativeQuery(EmployesConstantes.REQ_ADD_EMPLOYE);
-//        q.executeUpdate();
         this.persist(emp);
         
     }

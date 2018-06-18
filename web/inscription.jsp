@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 31 mai 2018, 09:42:31
-    Author     : esic
+    Document   : Inscription
+    Created on : 18 juin 2018, 19:33:19
+    Author     : Didou
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -34,7 +34,7 @@
 
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
+                        <h3 class="panel-title">Nouvelle Inscription</h3>
                     </div>
                     <div class="panel-body">
                         <form action="Controleur" method="POST">
@@ -43,12 +43,14 @@
                                     <input class="form-control" placeholder="Login" name="login" autofocus="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Mot de passe" name="mdp" type="password">
+                                    <input class="form-control" placeholder="Mot de passe" name="mdp1" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Confirmez le mot de passe" name="mdp2" type="password">
                                 </div>
 
-                                <input type="submit" name="action" value="Login" class="btn btn-primary" onclick="green()"/>
-                                <!--<input type="submit" name="action" value="pageInscription" class="btn btn-primary"/>-->
-                                <a href="inscription.jsp"> Inscription</a>                
+                                <input type="submit" name="bouton" value="Inscription" class="btn btn-primary"/>
+                                             
                             </fieldset>
                         </form>
                     </div>

@@ -60,6 +60,8 @@ public class Controleur extends HttpServlet {
 
             String loginSaisie = request.getParameter("login");
             String mdpSaisie = request.getParameter("mdp");
+            String mdp1Saisie = request.getParameter("mdp1");
+            String mdp2Saisie = request.getParameter("mdp2");
 
             if (loginSaisie != null && mdpSaisie != null) {
 
@@ -85,6 +87,7 @@ public class Controleur extends HttpServlet {
 
                     }
                 }
+
             }
 
             String btn = request.getParameter("bouton");
@@ -95,6 +98,18 @@ public class Controleur extends HttpServlet {
             }
             if (btn != null) {
                 switch (btn) {
+
+                    case ("Inscription"):
+                        //Nouvelle inscription
+                        if (mdp1Saisie.equals(request.getParameter("mdp2"))) {
+                            Utilisateur user = new Utilisateur();
+                            user.setLogin(request.getParameter("login"));
+                            user.setPassword(request.getParameter("mdp1"));
+                            infoConn.ajouterUtilisateur(user);
+                            request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
+                            break;
+
+                        }
 
                     case (EmployesConstantes.ACTION_SUPPRIMER):
                         cleEmp = request.getParameter("idClient");
@@ -141,22 +156,6 @@ public class Controleur extends HttpServlet {
 
                         break;
 
-//                        p = new Persistance();
-                    //cleId = (String) session.getAttribute("cleEmpSession");
-//                        cleNom = request.getParameter("nom");
-//                        clePrenom = request.getParameter("prenom");
-//                        cleTeldom = request.getParameter("teldom");
-//                        cleTelport = request.getParameter("telport");
-//                        cleTelpro = request.getParameter("telpro");
-//                        cleAdresse = request.getParameter("adresse");
-//                        cleCodepostal = request.getParameter("codepostal");
-//                        cleVille = request.getParameter("ville");
-//                        cleEmail = request.getParameter("email");
-//                        p.inserer(EmployesConstantes.REQ_ADD_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleTeldom, cleTelport, cleTelpro, cleCodepostal, cleVille);
-//                        rs2 = p.getConnexion(EmployesConstantes.REQ_SELECT_TOUS);
-//                        request.setAttribute("cleListe", p.getEmployes(rs2));
-//                        request.getRequestDispatcher(EmployesConstantes.PAGE_TABLEAU).forward(request, response);
-//                        break;
                     case (EmployesConstantes.ACTION_DETAILS):
                         employes = new Employes();
 
@@ -196,17 +195,8 @@ public class Controleur extends HttpServlet {
                         request.getRequestDispatcher(EmployesConstantes.PAGE_DETAIL_EMPLOYE).forward(request, response);
                         break;
 
-//                        p = new Persistance();
-//                       cleId = (String) session.getAttribute("cleEmpSession");
-//                        cleNom = request.getParameter("nom");
-//                        clePrenom = request.getParameter("prenom");
-                    //                       cleAdresse = request.getParameter("adresse");
-//                        cleEmail = request.getParameter("email");
-                    //                       p.modifier(EmployesConstantes.REQ_MODIF_EMPLOYE, cleEmail, clePrenom, cleAdresse, cleNom, cleId);
-//                        rs2 = p.getDetail(EmployesConstantes.REQ_SELECT_EMPLOYE, cleId);
-//                        request.setAttribute("cleEmp", p.getEmp(rs2));
                     case (EmployesConstantes.ACTION_QUITTER):
-                        response.sendRedirect(EmployesConstantes.PAGE_INDEX);
+                        request.getRequestDispatcher(EmployesConstantes.PAGE_INDEX).forward(request, response);
                         break;
 
                 }
@@ -230,8 +220,10 @@ public class Controleur extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controleur.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -248,8 +240,10 @@ public class Controleur extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controleur.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
